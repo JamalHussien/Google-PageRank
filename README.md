@@ -4,7 +4,7 @@ This program calculates the PageRank of a set of web pages using the iterative m
 
 ## Table of Contents
 1. [Concepts](#concepts)
-   - [Transition Matrix (Stochastic Matrix)](#transition-matrix-stochastic-matrix)
+   - [Transition Matrix (Stochastic Matrix)]
    - [Teleportation and Damping Factor](#teleportation-and-damping-factor)
    - [Markov Process and Steady-State Distribution](#markov-process-and-steady-state-distribution)
    - [Eigenvalues and Eigenvectors](#eigenvalues-and-eigenvectors)
