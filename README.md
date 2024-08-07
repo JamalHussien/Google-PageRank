@@ -1,11 +1,12 @@
 # Google-PageRank
-A simple application for Google PageRank technique applying probability and linear algebra concepts.
+## Overview
+This program calculates the PageRank of a set of web pages using the iterative method. The PageRank algorithm assigns a numerical ranking to each web page based on the structure of hyperlinks, reflecting the importance of the page. The program also includes a simple search engine functionality, allowing users to query a term and get a list of pages sorted by their PageRank.
 
-## Intuition
-simply if people points to you, you get a higher rank and if people points to you and you points to others or mentions them, they also get a higher rank.
-**It basically depends on conditional probability using:** 
-- Transition -Stochastic- matrix
-- Teleportation
-- Markov Process and Steady-State Distribution
-- Handling of Dead Ends and Spider Traps
+## Table of Contents
+1. [Concepts](#concepts)
+   - [Transition Matrix (Stochastic Matrix)](#transition-matrix-stochastic-matrix)
+   - [Teleportation and Damping Factor](#teleportation-and-damping-factor)
+   - [Markov Process and Steady-State Distribution](#markov-process-and-steady-state-distribution)
+   - [Eigenvalues and Eigenvectors](#eigenvalues-and-eigenvectors)
+
 
