@@ -57,16 +57,16 @@ This program calculates the PageRank of a set of web pages using the iterative m
 
 ## Functions and Key Sections
 ### getPageRank
-''' python
+``` python
 def getPageRank(fname):
     return R[0, f2i[fname]]
-'''
+```
 - Purpose: Retrieve the PageRank score for a given file name.
 - Parameters: fname - The name of the file (web page).
 - Returns: The PageRank score of the specified file.
 
 ### Data Preparation
-''' python
+``` python
 links = {}
 fnames = ['angelinajolie.html', 'bradpitt.html', 'jenniferaniston.html', 'jonvoight.html', 'martinscorcese.html', 'robertdeniro.html']
 for file in fnames:
@@ -80,12 +80,12 @@ for file in fnames:
           url, _, line = p.partition('\">')
           links[file].append(url)
   f.close()
-'''
+```
 - Purpose: Extract hyperlinks from each HTML file and store them in the links dictionary.
 - Structure: links[file] contains a list of URLs linked from the file.
 
 ### Transition Matrix
-''' python
+``` python
 DG = pickle.load(open('DG.pkl', 'rb'))
 NX = len(fnames)
 T = np.matrix(np.zeros((NX, NX)))
@@ -94,12 +94,12 @@ f2i = dict((fn, i) for i, fn in enumerate(fnames))
 for predecessor, successors in DG.adj.items():
     for s, edata in successors.items():
         T[f2i[predecessor], f2i[s]] = edata['weight']
-'''
+```
 - Purpose: Load a directed graph DG and construct the transition matrix T.
 - Explanation: f2i maps filenames to indices, and T is populated with transition probabilities between pages based on the links.
 
 ### PageRank Calculation
-''' python
+``` python
 epsilon = .01
 E = np.ones(T.shape) / NX
 L = T + E * epsilon
@@ -110,12 +110,12 @@ PI /= PI.sum()
 R = PI.copy()
 for _ in range(100):
     R = np.dot(R, G)
-'''
+```
 - Purpose: Calculate the PageRank vector R using an iterative method.
 - Explanation: epsilon adds a small value to ensure every page can be reached from any other page, making G a stochastic matrix. The initial rank vector PI is normalized, and the iteration updates R to converge to the final PageRank values.
 
 ### Visualization
-''' python
+``` python
 evolution = [np.dot(PI, np.linalg.matrix_power(G, i)) for i in range(1, 20)]
 plt.figure()
 for i in range(G.shape[1]):
@@ -125,14 +125,14 @@ plt.xlabel('iterations')
 plt.ylabel('rank')
 plt.legend()
 plt.show()
-'''
+```
 - Purpose: Visualize the evolution of PageRank scores over iterations.
 - Explanation: Plots the rank of each page across the first 19 iterations, showing how the PageRank values converge.
 #### plot
 ![plot](https://github.com/user-attachments/assets/900ad14c-1e52-4457-a02e-08ddce007082)
 
 ### Search Functionality
-''' python
+``` python
 revind = {}
 for fname in fnames:
     for line in open(fname).readlines():
@@ -146,7 +146,7 @@ for fname in fnames:
                 revind[token] = {fname: 1}
 result = revind['film'].keys()
 sorted(result, key=getPageRank, reverse=True)
-'''
+```
 - Purpose: Implement a basic search functionality to find pages containing a specific keyword (e.g., 'film') and sort them by PageRank.
 - Explanation: revind is a reverse index mapping words to the pages they appear in. The pages containing the queried term are sorted based on their PageRank scores.
 
